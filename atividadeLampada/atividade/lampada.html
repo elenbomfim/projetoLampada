@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lampadas</title>
+    <style>
+      body {
+        margin-top: 15em;
+        display: block;
+        text-align: center;
+        border: 1px solid rgb(86, 74, 194);
+        border-radius: 5px;
+        margin: 20em 50em;
+      }
+      img {
+        width: 100px;
+        margin-right: 10px;
+      }
+      button {
+        margin-bottom: 2em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lâmpadas</h1>
+
+    <div id="lampadasContainer"></div>
+    <button id="botãoAdicionar">Adicionar lâmpada</button>
+    <script>
+      function adicionarLampada() {
+        const lampada = document.createElement("img");
+        lampada.src = "assets/apagada.jpg";
+        lampada.alt = "lampada apagada";
+
+        function lampadaAcessa() {
+          lampada.src = "assets/acesa.jpg";
+          lampada.alt = "lampada acessa";
+        }
+
+        function lampadaApagada() {
+          lampada.src = "assets/apagada.jpg";
+          lampada.alt = "lampada apagada";
+        }
+
+        function lampadaQuebrada() {
+          lampada.src = "assets/quebrada.jpg";
+          lampada.alt = "lampada quebrada";
+          lampada.removeEventListener("mouseover", lampadaAcessa);
+          lampada.removeEventListener("mouseout", lampadaApagada);
+          lampada.removeEventListener("click", lampadaQuebrada);
+        }
+
+        lampada.addEventListener("mouseover", lampadaAcessa);
+        lampada.addEventListener("mouseout", lampadaApagada);
+        lampada.addEventListener("click", lampadaQuebrada);
+
+        document.getElementById("lampadasContainer").appendChild(lampada);
+      }
+
+      document
+        .getElementById("botãoAdicionar")
+        .addEventListener("click", adicionarLampada);
+    </script>
+  </body>
+</html>
